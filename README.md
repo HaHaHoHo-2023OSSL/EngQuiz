@@ -15,3 +15,22 @@
 	<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
 	<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
 </div>
+
+<br>
+
+<div align=left>
+
+# TEAM HAHAHOHO
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/130718216/236641544-3fb53ac9-4206-44ff-9655-7cf77c65d9e3.jpg" width="750" height="500">
+</p>
+Hello. We are Team Hahahoho.<br>
+Why not changed the world.<br>
+Thank you.<br>
+
+
+## 팀원 소개
+22000601 이호연<br>
+22000636 장하준<br>
+
+</div>
