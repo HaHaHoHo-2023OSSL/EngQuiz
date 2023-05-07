@@ -1,32 +1,50 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=HAHO%20VOCA&fontSize=90&animation=fadeIn)
 
-# EngQuiz
+## 주제
+하호보카(HaHoVoca)는 퀴즈를 통한 영단어 공부 프로그램입니다.
+<br>
+<br>
+## 소개
+- 모르는 영단어를 개인 영단어 리스트에 추가하여 조회할 수 있습니다.
+- 퀴즈를 통해 리스트에 있는 영단어를 효과적으로 암기할 수 있습니다.
+- 랭크 시스템을 통해 공부가 아닌 게임처럼 재미를 느끼며 영단어를 암기할 수 있습니다.
+<br>
 
+## 하호보카(HaHoVoca)의 기능설명
+- 모르는 영단어 추가 기능
+- 영단어 리스트 조회 기능
+- 영단어 수정 기능
+- 영단어 삭제 기능
+- 퀴즈 기능
+- 현재 랭크 확인 기능
 <br>
 <br>
 <br>
 
-<div align=center>
-	<h3>📚 개발 환경 및 언어 📚</h3>
-</div>
-<div align="center">
- <div align="center">
+
+## 개발 환경 및 언어
+<div align="left">
+	<img src="https://img.shields.io/badge/github-181717?style=flat&logo=github&logoColor=white" />	
 	<img src="https://img.shields.io/badge/C-A8B9CC?style=flat&logo=C&logoColor=white" />
 	<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
-	<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
+	<img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=Linux&logoColor=white" />
+	<img src="https://img.shields.io/badge/markdown-000000?style=flat&logo=markdown&logoColor=white" />
+	<img src="https://img.shields.io/badge/VSCode-007ACC?style=flat&logo=visualstudiocode&logoColor=white" />	
 </div>
 
 <br>
 
 <div align=left>
 
-# TEAM HAHAHOHO
+## TEAM HAHAHOHO
 <p align="center">
   <img src="https://user-images.githubusercontent.com/130718216/236641544-3fb53ac9-4206-44ff-9655-7cf77c65d9e3.jpg" width="750" height="500">
 </p>
 Hello. We are Team Hahahoho.<br>
 Why not changed the world.<br>
 Thank you.<br>
+<br>
+<br>
 
 
 ## 팀원 소개
