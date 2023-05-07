@@ -1,5 +1,24 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=HAHO%20VOCA&fontSize=90&animation=fadeIn)
 
+## 주제
+하호보카(HaHoVoca)는 퀴즈를 통한 영단어 공부 프로그램입니다.
+<br>
+<br>
+## 소개
+- 모르는 영단어를 개인 영단어 리스트에 추가하여 조회할 수 있습니다.
+- 퀴즈를 통해 리스트에 있는 영단어를 효과적으로 암기할 수 있습니다.
+- 랭크 시스템을 통해 공부가 아닌 게임처럼 재미를 느끼며 영단어를 암기할 수 있습니다.
+<br>
+
+## 하호보카(HaHoVoca)의 기능설명
+- 모르는 영단어 추가 기능
+- 영단어 리스트 조회 기능
+- 영단어 수정 기능
+- 영단어 삭제 기능
+- 퀴즈 기능
+- 현재 랭크 확인 기능
+<br>
+
 # EngQuiz
 
 <br>
