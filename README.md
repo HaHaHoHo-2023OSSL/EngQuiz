@@ -33,30 +33,24 @@
 	<img src="https://img.shields.io/badge/markdown-000000?style=flat&logo=markdown&logoColor=white" />
 	<img src="https://img.shields.io/badge/VSCode-007ACC?style=flat&logo=visualstudiocode&logoColor=white" />	
 </div>
-
 <br>
-
 <div align=left>
+</div>
 
 ## TEAM HAHAHOHO
 <br>
 * 팀 소개
 <p align="center">
-<img width="750" alt="스크린샷 2023-05-07 오후 11 50 00" src="https://user-images.githubusercontent.com/127426156/236684801-54d9259f-8a94-4678-b48d-dc96adac5016.png">
+<img src="https://user-images.githubusercontent.com/127426156/236684801-54d9259f-8a94-4678-b48d-dc96adac5016.png" width="750">
 <p/>    
 	
-
 안녕하세요! 저희는 OSS miniproject 11조 HAHAHOHO 팀입니다 :)         
 팀명 **HAHAHOHO**는 저희의 이름인 하준과 호연의 앞글자를 따서 만들었으며,        
 "항상 즐겁게 팀프로젝트를 하자!" 라는 의미를 담고 있습니다.  
-
 <br>
 	
 * 팀원 소개 및 역할    
 <p align="left">
 <img src="https://user-images.githubusercontent.com/130718216/236844762-02abfaaf-4b95-48c1-b562-969ba6285a19.png" width = "510"><br>
 <img src="https://user-images.githubusercontent.com/130718216/236844546-9ae49b17-5e30-433d-8f02-c2b5accc949d.png" width = "510"> 
-
-
 <p/>  
-</div>
