@@ -54,7 +54,9 @@
 	
 * 팀원 소개 및 역할    
 <p align="left">
-<img width="527" alt="스크린샷 2023-05-07 오후 11 38 26" src="https://user-images.githubusercontent.com/127426156/236684219-96a4f2b6-d0d7-4fe8-a6b0-bc26f32cd179.png"> 
-<img width="514" alt="스크린샷 2023-05-07 오후 11 38 35" src="https://user-images.githubusercontent.com/127426156/236684239-d7dd226d-2b17-41c9-96a3-6f63bc74fbc1.png">
+<img src="https://user-images.githubusercontent.com/130718216/236844762-02abfaaf-4b95-48c1-b562-969ba6285a19.png" width = "510"><br>
+<img src="https://user-images.githubusercontent.com/130718216/236844546-9ae49b17-5e30-433d-8f02-c2b5accc949d.png" width = "510"> 
+
+
 <p/>  
 </div>
