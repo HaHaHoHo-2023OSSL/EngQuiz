@@ -44,7 +44,7 @@
 <img src="https://user-images.githubusercontent.com/127426156/236684801-54d9259f-8a94-4678-b48d-dc96adac5016.png" width="750">
 <p/>    
 	
-안녕하세요! 저희는 OSS miniproject 11조 HAHAHOHO 팀입니다 :)         
+안녕하세요! 저희는 OSS miniproject 11조 **HAHAHOHO** 팀입니다 :)         
 팀명 **HAHAHOHO**는 저희의 이름인 하준과 호연의 앞글자를 따서 만들었으며,        
 "항상 즐겁게 팀프로젝트를 하자!" 라는 의미를 담고 있습니다.  
 <br>
