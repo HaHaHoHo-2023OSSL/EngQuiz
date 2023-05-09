@@ -37,8 +37,7 @@
 <div align=left>
 </div>
 
-## TEAM HAHAHOHO
-<br>
+## TEAM HAHAHOHO   
 * 팀 소개
 <p align="center">
 <img src="https://user-images.githubusercontent.com/127426156/236684801-54d9259f-8a94-4678-b48d-dc96adac5016.png" width="750">
