@@ -51,6 +51,6 @@
 	
 * 팀원 소개 및 역할    
 <p align="left">
-<img src="https://user-images.githubusercontent.com/130718216/236844762-02abfaaf-4b95-48c1-b562-969ba6285a19.png" width = "510"><br>
-<img src="https://user-images.githubusercontent.com/130718216/236844546-9ae49b17-5e30-433d-8f02-c2b5accc949d.png" width = "510"> 
+<img src="https://github.com/HaHaHoHo-2023OSSL/Miniproject_HaHoVoca/assets/130718216/b382800e-57dc-4d46-9af9-affa61f1142e" width = "510"><br>
+<img src="https://github.com/HaHaHoHo-2023OSSL/Miniproject_HaHoVoca/assets/130718216/bc719ab7-6f7d-4a8e-b5fe-5e0cbfc4b665" width = "510"> 
 <p/>  
