@@ -61,5 +61,8 @@ int quiz2 (Voca *v[], int index){
 int main(void){
   Voca *v[100];
   int index = 0;
-  quiz(v, index);
+  
+  quiz1(v, index);
+  
+  quiz2(v, index);
 }
