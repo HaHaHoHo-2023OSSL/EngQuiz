@@ -21,6 +21,11 @@
     }
 
 int quiz(Voca *v[], int index){
+    if (index == 0){
+        printf("저장된 단어가 없습니다.");
+        return 1;
+    }
+    
     srand(time(NULL)); // 난수 생성을 위한 시드 설정
     int randomIndex = rand() % index; // 랜덤한 count 선택
 
@@ -40,6 +45,11 @@ int quiz(Voca *v[], int index){
 }
 
 int quiz2 (Voca *v[], int index){
+    if (index == 0){
+        printf("저장된 단어가 없습니다.");
+        return 1;
+    }
+    
     srand(time(NULL)); // 난수 생성을 위한 시드 설정
     int randomIndex = rand() % index; // 랜덤한 인덱스 선택
 
