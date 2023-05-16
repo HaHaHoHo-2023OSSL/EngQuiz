@@ -3,31 +3,21 @@
     #include <string.h>
     #include <time.h>
 
-    typedef struct{
-        char word[10];
-        char meaning[10];
-    } Voca;
+// 퀴즈 1
+int quiz1 (Voca *v[], int index){
 
-    int addWord(Voca *v){
-        fflush(stdin);
-        printf("단어 : ");
-        scanf("%s", v->word);
-        
-        fflush(stdin);
-        printf("의미 : ");
-        scanf("%s", v->meaning);
-
-        return 1;
-    }
-
-int quiz(Voca *v[], int index){
     if (index == 0){
         printf("저장된 단어가 없습니다.");
         return 1;
     }
-    
+
     srand(time(NULL)); // 난수 생성을 위한 시드 설정
-    int randomIndex = rand() % index; // 랜덤한 count 선택
+    int randomIndex = rand() % index; // 랜덤한 인덱스 선택
+
+    while(v[randomIndex]->word == NULL){ // delete로 인해 NULL 값이 나온경우
+        srand(time(NULL)); // 시드 재설정
+        randomIndex = rand() % index; //랜덤 인덱스 재선택
+    }
 
     printf("단어 : %s\n", v[randomIndex]->word);
 
@@ -44,14 +34,22 @@ int quiz(Voca *v[], int index){
     return 1;
 }
 
+// 퀴즈 2
 int quiz2 (Voca *v[], int index){
+
     if (index == 0){
         printf("저장된 단어가 없습니다.");
         return 1;
     }
-    
+
     srand(time(NULL)); // 난수 생성을 위한 시드 설정
     int randomIndex = rand() % index; // 랜덤한 인덱스 선택
+
+    while(v[randomIndex]->word == NULL){ // delete로 인해 NULL 값이 나온경우
+        srand(time(NULL)); // 시드 재설정
+        randomIndex = rand() % index; //랜덤 인덱스 재선택
+    }
+
 
     printf("뜻 : %s\n", v[randomIndex]->meaning);
 
@@ -66,13 +64,4 @@ int quiz2 (Voca *v[], int index){
     }
 
     return 1;
-}
-
-int main(void){
-  Voca *v[100];
-  int index = 0;
-  
-  quiz1(v, index);
-  
-  quiz2(v, index);
 }
