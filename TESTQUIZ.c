@@ -65,3 +65,46 @@ int quiz2 (Voca *v[], int index){
 
     return 1;
 }
+
+//퀴즈3
+int quiz3() {
+    int i = 0;
+    Voca *v[100];
+    FILE *fp;
+    fp = fopen("database.txt", "rt");
+
+    if (fp == NULL) {
+        printf("=> 데이터 없음\n");
+        return 0;
+    }
+
+    for (i = 0; i < 100; i++) {
+        v[i] = (Voca *)malloc(sizeof(Voca));
+
+        fscanf(fp, " %s", v[i]->word);
+        if (feof(fp))
+            break;
+
+        fscanf(fp, " %s", v[i]->meaning);
+
+    }
+
+    fclose(fp);
+
+    srand(time(NULL)); // 난수 생성을 위한 시드 설정
+    int randomIndex = rand() % i; // 랜덤한 인덱스 선택
+
+    printf("단어: %s\n", v[randomIndex]->word);
+
+    char answer[10];
+    printf("뜻을 입력하세요: ");
+    scanf("%s", answer);
+
+    if (strcmp(answer, v[randomIndex]->meaning) == 0) {
+        printf("정답입니다!\n");
+    } else {
+        printf("오답입니다. 정답은 %s입니다.\n", v[randomIndex]->meaning);
+    }
+
+    return 1;
+}
