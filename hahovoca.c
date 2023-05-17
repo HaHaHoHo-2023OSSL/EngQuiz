@@ -397,3 +397,27 @@ int logIn(User *u[], int user_index, User **temp){
 
     return status;
 }
+
+// 회원 파일 조회 함수
+int loadUserData(User *u[]){
+    FILE *fp;
+    fp = fopen("users.txt", "rt");
+
+    if(fp == NULL) {
+        printf("=> 현재 유저 0명\n");
+        return 0;
+    }
+
+    int i;
+    for(i = 0; i < 10; i++){
+        u[i] = (User *)malloc(sizeof(User));
+        
+        fscanf(fp, "%d", &u[i]->id);
+        if(feof(fp)) break;
+    }
+
+    printf("=> 현재 유저 %d명\n", i);
+    fclose(fp);
+
+    return i;
+}
