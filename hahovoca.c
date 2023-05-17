@@ -154,4 +154,3 @@ void searchName(Voca *v[], int index){
     if (scnt == 0) printf("=> 검색된 데이터 없음!\n");
     printf("\n");
 }
-=======
