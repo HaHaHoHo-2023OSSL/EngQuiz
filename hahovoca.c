@@ -155,6 +155,7 @@ void searchName(Voca *v[], int index){
     printf("\n");
 }
 
+
 // 퀴즈 1
 int quiz1 (Voca *v[], int index){
 
