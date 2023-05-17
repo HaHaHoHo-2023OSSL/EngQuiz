@@ -304,3 +304,54 @@ int quiz4() {
 
     return 1;
 }
+
+// 파일에 저장 함수
+void saveData(Voca *v[], int index, int id){
+    char filename[20];
+    
+    sprintf(filename, "%d", id);
+    strcat(filename, ".txt");
+
+    FILE *fp;
+    fp = fopen(filename, "wt");
+
+    for (int i = 0; i < index; i++){
+        if(v[i] == NULL) continue;
+        fprintf(fp, "%s %s\n", v[i]->word, v[i]->meaning);
+    }
+
+    fclose(fp);
+    printf("=> 저장됨!\n");
+}
+
+// 파일 읽기 함수
+int loadData(Voca *v[], int id){    
+    int i = 0;
+
+    char filename[20];
+    
+    sprintf(filename, "%d", id);
+    strcat(filename, ".txt");
+
+    FILE *fp;
+    fp = fopen(filename, "rt");
+
+    if(fp == NULL) {
+        printf("=> 저장된 단어장 없음.\n");
+        return 0;
+    }
+
+    for(i = 0; i < 100; i++){
+        v[i] = (Voca *)malloc(sizeof(Voca));
+        
+        fscanf(fp, " %s", v[i]->word);
+        if(feof(fp)) break;
+
+        fscanf(fp, " %s", v[i]->meaning);
+    }
+
+    fclose(fp);
+    printf("=> 단어장 불러오기 성공!\n");
+
+    return i;
+}
