@@ -154,4 +154,204 @@ void searchName(Voca *v[], int index){
     if (scnt == 0) printf("=> 검색된 데이터 없음!\n");
     printf("\n");
 }
-=======
+
+// 퀴즈 1
+int quiz1 (Voca *v[], int index){
+
+    if (index == 0){
+        printf("저장된 단어가 없습니다.");
+        return 1;
+    }
+
+    srand(time(NULL)); // 난수 생성을 위한 시드 설정
+    int randomIndex = rand() % index; // 랜덤한 인덱스 선택
+
+    while(v[randomIndex]->word == NULL){ // delete로 인해 NULL 값이 나온경우
+        srand(time(NULL)); // 시드 재설정
+        randomIndex = rand() % index; //랜덤 인덱스 재선택
+    }
+
+    printf("단어 : %s\n", v[randomIndex]->word);
+
+    char answer[10];
+    printf("뜻을 입력하세요: ");
+    scanf("%s", answer);
+
+    if (strcmp(answer, v[randomIndex]->meaning) == 0) {
+        printf("정답입니다!\n");
+    } else {
+        printf("오답입니다. 정답은 %s입니다.\n", v[randomIndex]->meaning);
+    }
+
+    return 1;
+}
+
+// 퀴즈 2
+int quiz2 (Voca *v[], int index){
+
+    if (index == 0){
+        printf("저장된 단어가 없습니다.");
+        return 1;
+    }
+
+    srand(time(NULL)); // 난수 생성을 위한 시드 설정
+    int randomIndex = rand() % index; // 랜덤한 인덱스 선택
+
+    while(v[randomIndex]->word == NULL){ // delete로 인해 NULL 값이 나온경우
+        srand(time(NULL)); // 시드 재설정
+        randomIndex = rand() % index; //랜덤 인덱스 재선택
+    }
+
+
+    printf("뜻 : %s\n", v[randomIndex]->meaning);
+
+    char answer[10];
+    printf("영어 철자를 입력하세요: ");
+    scanf("%s", answer);
+
+    if (strcmp(answer, v[randomIndex]->word) == 0) {
+        printf("정답입니다!\n");
+    } else {
+        printf("오답입니다. 정답은 %s입니다.\n", v[randomIndex]->word);
+    }
+
+    return 1;
+}
+
+// 퀴즈 3
+int quiz3() {
+    int i = 0;
+    Voca *v[100];
+    FILE *fp;
+    fp = fopen("database.txt", "rt");
+
+    if (fp == NULL) {
+        printf("=> 데이터 없음\n");
+        return 0;
+    }
+
+    for (i = 0; i < 100; i++) {
+        v[i] = (Voca *)malloc(sizeof(Voca));
+
+        fscanf(fp, " %s", v[i]->word);
+        if (feof(fp))
+            break;
+
+        fscanf(fp, " %s", v[i]->meaning);
+
+    }
+
+    fclose(fp);
+
+    srand(time(NULL)); // 난수 생성을 위한 시드 설정
+    int randomIndex = rand() % i; // 랜덤한 인덱스 선택
+
+    printf("단어: %s\n", v[randomIndex]->word);
+
+    char answer[10];
+    printf("뜻을 입력하세요: ");
+    scanf("%s", answer);
+
+    if (strcmp(answer, v[randomIndex]->meaning) == 0) {
+        printf("정답입니다!\n");
+    } else {
+        printf("오답입니다. 정답은 %s입니다.\n", v[randomIndex]->meaning);
+    }
+
+    return 1;
+}
+
+
+// 퀴즈 4
+int quiz4() {
+    int i = 0;
+    Voca *v[100];
+    FILE *fp;
+    fp = fopen("database.txt", "rt");
+
+    if (fp == NULL) {
+        printf("=> 데이터 없음\n");
+        return 0;
+    }
+
+    for (i = 0; i < 100; i++) {
+        v[i] = (Voca *)malloc(sizeof(Voca));
+
+        fscanf(fp, " %s", v[i]->word);
+        if (feof(fp))
+            break;
+
+        fscanf(fp, " %s", v[i]->meaning);
+
+    }
+
+    fclose(fp);
+
+    srand(time(NULL)); // 난수 생성을 위한 시드 설정
+    int randomIndex = rand() % i; // 랜덤한 인덱스 선택
+
+    printf("뜻: %s\n", v[randomIndex]->meaning);
+
+    char answer[10];
+    printf("영어 철자를 입력하세요: ");
+    scanf("%s", answer);
+
+    if (strcmp(answer, v[randomIndex]->word) == 0) {
+        printf("정답입니다!\n");
+    } else {
+        printf("오답입니다. 정답은 %s입니다.\n", v[randomIndex]->word);
+    }
+
+    return 1;
+}
+
+// 파일에 저장 함수
+void saveData(Voca *v[], int index, int id){
+    char filename[20];
+    
+    sprintf(filename, "%d", id);
+    strcat(filename, ".txt");
+
+    FILE *fp;
+    fp = fopen(filename, "wt");
+
+    for (int i = 0; i < index; i++){
+        if(v[i] == NULL) continue;
+        fprintf(fp, "%s %s\n", v[i]->word, v[i]->meaning);
+    }
+
+    fclose(fp);
+    printf("=> 저장됨!\n");
+}
+
+// 파일 읽기 함수
+int loadData(Voca *v[], int id){    
+    int i = 0;
+
+    char filename[20];
+    
+    sprintf(filename, "%d", id);
+    strcat(filename, ".txt");
+
+    FILE *fp;
+    fp = fopen(filename, "rt");
+
+    if(fp == NULL) {
+        printf("=> 저장된 단어장 없음.\n");
+        return 0;
+    }
+
+    for(i = 0; i < 100; i++){
+        v[i] = (Voca *)malloc(sizeof(Voca));
+        
+        fscanf(fp, " %s", v[i]->word);
+        if(feof(fp)) break;
+
+        fscanf(fp, " %s", v[i]->meaning);
+    }
+
+    fclose(fp);
+    printf("=> 단어장 불러오기 성공!\n");
+
+    return i;
+}
