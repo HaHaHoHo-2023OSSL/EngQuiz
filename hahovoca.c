@@ -426,11 +426,11 @@ int loadUserData(User *u[]){
 
 int main(void){
     User *user[10];
-    User *temp;
+    User **temp;
 
-    int id_input;
     int menu_;
-    int user_index = 0;
+    int user_index = loadUserData(user);
+    int count = 0;
 
     while(1){
         int status = 0;
@@ -440,133 +440,148 @@ int main(void){
         if(menu_ == 0) break;
 
         if(menu_ == 1){
-            printf("\n*** HaHoVOCA 회원가입 화면 ***\n");
-
-            user[user_index] = (User *)malloc(sizeof(User));
-            user[user_index]->index = 0;
-            
-            printf("ID 입력 : ");
-            scanf(" %d", &user[user_index]->id);
-
-            user_index++;
-
-            printf("=> 회원가입 완료\n");
+            user_index += signUp(user, user_index);
         }
 
         if(menu_ == 2){
             while(1){
-
-                printf("\n*** HaHoVOCA 로그인 화면 ***\n");
-                printf("ID를 입력하세요 (돌아가기 -1): ");
-                scanf(" %d", &id_input);
-
-                if(id_input == -1) break;
+                status = logIn(user, user_index, temp);
                 
-                for(int i = 0; i < user_index; i++){
-                    if(user[i]->id == id_input){
-                        printf("=> 로그인 성공!\n");
-                        temp = user[i];
-                        status = 1;
-                        break;
-                    }
+                if(status == -1) {
+                    status = 0;
+                    break;
                 }
 
                 if(status == 0){
-                    printf("=> 다시 입력해주세요\n");
+                    printf("=> 다시 입력해주세요!\n");
                     continue;
                 } else break;
             }
         }
 
-        int count = 0, menu, num, isDeleteOK;
+        int menu, num, isDeleteOK;
 
         if(status){
-            count = loadData(temp->voca, temp);   // 파일 읽기
-            temp->index = count;
+            if(loadData((*temp)->voca, (*temp)->id) != 0){
+                count = loadData((*temp)->voca, (*temp)->id);
+            } else {
+                count = ((*temp)->index);
+            }
         }
 
         while(status){
-
             menu = selectMenu_2();    // 메뉴 선택
             printf("\n");
 
             // 프로그램 처음 실행 시에는 메뉴 1, 3, 4는 실행 못함
             if (menu == 1 || menu == 3 || menu == 4) {
-                if (temp->index == 0) {
+                if ((*temp)->index == 0) {
                     printf("=> 조회할 단어가 없습니다!\n");
                     continue;
                 }
             }
 
             // 메뉴 0 : 로그아웃
-            if (menu == 0) break;
+            if (menu == 0) {
+                break;
+            }
 
             // 메뉴 1 : 단어장 조회
             else if (menu == 1){
-                listWord(temp->voca, temp->index);
+                listWord((*temp)->voca, (*temp)->index);
             }
 
             // 메뉴 2 : 단어 추가
             else if (menu == 2){
-                temp->voca[temp->index] = (Voca *)malloc(sizeof(Voca));
-                count += addWord(temp->voca[temp->index++]);
+                (*temp)->voca[(*temp)->index] = (Voca *)malloc(sizeof(Voca));
+                count += addWord((*temp)->voca[(*temp)->index++]);
 
                 printf("=> 추가됨!\n");
             }
                     
-            // 메뉴 3 : 점수 수정
+            // 메뉴 3 : 단어 수정
             else if (menu == 3) {
-                num = selectDataNo(temp->voca, temp->index);
+                num = selectDataNo((*temp)->voca, (*temp)->index);
                 if (num == 0) {
                     printf("=> 취소됨!\n");
                     continue;
                 }
-                updateWord(temp->voca[num - 1]);
+                updateWord((*temp)->voca[num - 1]);
             }
 
-            // 메뉴 4 : 점수 삭제
+            // 메뉴 4 : 단어 삭제
             else if (menu == 4) {
-                num = selectDataNo(temp->voca, temp->index);
+                num = selectDataNo((*temp)->voca, (*temp)->index);
 
                 if (num == 0) {
                     printf("=> 취소됨!\n");
                     continue;
                 }
 
-                printf("정말로 삭제하시겠습니까?(삭제 :1)");
+                printf("정말로 삭제하시겠습니까? (삭제 1)");
                 scanf("%d", &isDeleteOK);
 
                 if (isDeleteOK == 1) {
-                    if (temp->voca[num - 1]) free(temp->voca[num - 1]);
-                    temp->voca[num - 1] = NULL;
+                    if ((*temp)->voca[num - 1]) free((*temp)->voca[num - 1]);
+                    (*temp)->voca[num - 1] = NULL;
                     count--;
                     printf("=> 삭제됨!\n");
                 }
             }
 
-            // 메뉴 5 : 이름 검색
+            // 메뉴 5 : 단어 검색
             else if (menu == 5) {
-                searchName(temp->voca, temp->index);
+                searchName((*temp)->voca, (*temp)->index);
             }
 
-            // 메뉴 6 : 파일 저장
+            // 메뉴 6 : 단어장 파일 저장
             else if (menu == 6) {
-                saveData(temp->voca, temp->index, temp);
+                saveData((*temp)->voca, (*temp)->index, (*temp)->id);
             }
 
-            // 메뉴 7 : 퀴즈1
+            // 메뉴 7 : 자신의 단어장에서 퀴즈 출제
             else if (menu == 7) {
-                quiz1(temp->voca, temp->index);
+
+                int num = 0;
+
+                printf("영어 철자를 맞출지 뜻을 맞출지 숫자를 입력해주세요. \n");
+                printf("1: 영어 철자, 2: 뜻 \n");
+                scanf("%d", &num);
+
+                if (num == 1){ //퀴즈1 (영단어 -> 뜻)    
+                    quiz1((*temp)->voca, (*temp)->index);
+                }
+                else if (num == 2){ //퀴즈2 (뜻 -> 영단어)
+                    quiz2((*temp)->voca, (*temp)->index);
+                }
+                else {
+                    printf("잘못 입력하셨습니다.");
+                }
             }
 
-            // 메뉴 8 : 퀴즈2
+            // 메뉴 8 : 데이터에서 퀴즈 출제
             else if (menu == 8) {
-                quiz2(temp->voca, temp->index);
+
+                int num = 0;
+
+                printf("영어 철자를 맞출지 뜻을 맞출지 숫자를 입력해주세요. \n");
+                printf("1: 영어 철자, 2: 뜻 \n");
+                scanf("%d", &num);
+
+                if (num == 1){ //퀴즈1 (영단어 -> 뜻)    
+                    quiz3();
+                }
+                else if (num == 2){ //퀴즈2 (뜻 -> 영단어)
+                    quiz4();
+                }
+                else {
+                    printf("잘못 입력하셨습니다.");
+                }
             }
         }
     }
 
-    printf("종료됨!\n");
+    printf("\n=> 종료됨!\n");
 
     return 0;
 }
