@@ -355,3 +355,45 @@ int loadData(Voca *v[], int id){
 
     return i;
 }
+
+// 회원가입 함수
+int signUp(User *u[], int user_index){
+    printf("\n=====| HaHoVOCA 회원가입 |=====\n");
+
+    u[user_index] = (User *)malloc(sizeof(User));
+    u[user_index]->index = 0;
+            
+    printf("\u09F9 학번 입력 : ");
+    scanf(" %d", &u[user_index]->id);
+
+    printf("\n=> 회원가입 완료!\n");
+
+    FILE *fp;
+    fp = fopen("users.txt", "a+");
+    fprintf(fp, "%d\n", u[user_index]->id);
+    fclose(fp);
+
+    return 1;
+}
+
+// 로그인 함수
+int logIn(User *u[], int user_index, User **temp){
+    int id_input, status = 0;
+
+    printf("\n=====| HaHoVOCA 로그인 |=====\n");
+    printf("\u09F9 학번 (돌아가기 -1) : ");
+    scanf("%d", &id_input);
+
+    if(id_input == -1) return -1;
+                
+    for(int i = 0; i < user_index; i++){
+        if(u[i]->id == id_input){
+            printf("\n=> 로그인 성공!\n");
+            (*temp) = u[i];
+            status = 1;
+            break;
+        }
+    }
+
+    return status;
+}
