@@ -4,8 +4,8 @@
 #include <time.h>
 
 typedef struct{
-    char word[10];
-    char meaning[10];
+    char word[30];
+    char meaning[30];
 } Voca;
 
 typedef struct{
@@ -35,14 +35,14 @@ void readWord(Voca v){
 
 // Read (다중 데이터)
 void listWord(Voca *v[], int index){
-    printf("\nNo  Word  Meaning\n");
-    printf("====================\n");
+    printf("\nNo | Word  :  Meaning\n");
+    printf("========================\n");
     
     int count = 0;
     for(int i = 0; i < index; i++){
         if(v[i] == NULL) continue;
         count++;
-        printf("%2d  ", count);
+        printf("%2d   ", count);
         readWord(*v[i]);
     }
     printf("\n");
@@ -96,7 +96,6 @@ int selectMenu_1(){
 int selectMenu_2(){
     int menu;
     
-    // printf("\n*** HaHoVOCA ***\n");
     printf("\n\u256D\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 HaHoVOCA \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256E\n");
     printf("\u07CB                                            \u07CB\n");
     printf("  1| 단어장 조회 ");
@@ -137,7 +136,7 @@ void searchName(Voca *v[], int index){
     printf("검색 단어 : ");
     scanf("%s", search);
 
-    printf("\nNo  Word  Meaning\n");
+    printf("\nNo | Word  :  Meaning\n");
     printf("====================\n");
     
     int count = 0;
@@ -145,7 +144,7 @@ void searchName(Voca *v[], int index){
         if(v[i] == NULL) continue;
         if(strstr(v[i]->word, search)){
             count++;
-            printf("%2d ", count);
+            printf("%2d  ", count);
             readWord(*v[i]);
             scnt = 1;
         }
@@ -159,28 +158,28 @@ void searchName(Voca *v[], int index){
 int quiz1 (Voca *v[], int index){
 
     if (index == 0){
-        printf("저장된 단어가 없습니다.");
+        printf("=> 저장된 단어가 없습니다!\n");
         return 1;
     }
 
     srand(time(NULL)); // 난수 생성을 위한 시드 설정
     int randomIndex = rand() % index; // 랜덤한 인덱스 선택
 
-    while(v[randomIndex]->word == NULL){ // delete로 인해 NULL 값이 나온경우
+    while(v[randomIndex] == NULL){ // delete로 인해 NULL 값이 나온경우
         srand(time(NULL)); // 시드 재설정
         randomIndex = rand() % index; //랜덤 인덱스 재선택
     }
 
-    printf("단어 : %s\n", v[randomIndex]->word);
+    printf("\n단어 : %s\n", v[randomIndex]->word);
 
     char answer[10];
-    printf("뜻을 입력하세요: ");
+    printf("한글 뜻을 입력하세요 : ");
     scanf("%s", answer);
 
     if (strcmp(answer, v[randomIndex]->meaning) == 0) {
-        printf("정답입니다!\n");
+        printf("\n=> 정답입니다!\n");
     } else {
-        printf("오답입니다. 정답은 %s입니다.\n", v[randomIndex]->meaning);
+        printf("\n=> 오답입니다.\n정답은 %s 입니다.\n", v[randomIndex]->meaning);
     }
 
     return 1;
@@ -190,29 +189,29 @@ int quiz1 (Voca *v[], int index){
 int quiz2 (Voca *v[], int index){
 
     if (index == 0){
-        printf("저장된 단어가 없습니다.");
+        printf("=> 저장된 단어가 없습니다!\n");
         return 1;
     }
 
     srand(time(NULL)); // 난수 생성을 위한 시드 설정
     int randomIndex = rand() % index; // 랜덤한 인덱스 선택
 
-    while(v[randomIndex]->word == NULL){ // delete로 인해 NULL 값이 나온경우
+    while(v[randomIndex] == NULL){ // delete로 인해 NULL 값이 나온경우
         srand(time(NULL)); // 시드 재설정
         randomIndex = rand() % index; //랜덤 인덱스 재선택
     }
 
 
-    printf("뜻 : %s\n", v[randomIndex]->meaning);
+    printf("\n뜻 : %s\n", v[randomIndex]->meaning);
 
     char answer[10];
-    printf("영어 철자를 입력하세요: ");
+    printf("영단어를 입력하세요 : ");
     scanf("%s", answer);
 
     if (strcmp(answer, v[randomIndex]->word) == 0) {
-        printf("정답입니다!\n");
+        printf("\n=> 정답입니다!\n");
     } else {
-        printf("오답입니다. 정답은 %s입니다.\n", v[randomIndex]->word);
+        printf("\n=> 오답입니다.\n정답은 %s 입니다.\n", v[randomIndex]->word);
     }
 
     return 1;
@@ -246,16 +245,16 @@ int quiz3() {
     srand(time(NULL)); // 난수 생성을 위한 시드 설정
     int randomIndex = rand() % i; // 랜덤한 인덱스 선택
 
-    printf("단어: %s\n", v[randomIndex]->word);
+    printf("\n단어: %s\n", v[randomIndex]->word);
 
     char answer[10];
-    printf("뜻을 입력하세요: ");
+    printf("한글 뜻을 입력하세요 : ");
     scanf("%s", answer);
 
     if (strcmp(answer, v[randomIndex]->meaning) == 0) {
-        printf("정답입니다!\n");
+        printf("\n=> 정답입니다!\n");
     } else {
-        printf("오답입니다. 정답은 %s입니다.\n", v[randomIndex]->meaning);
+        printf("\n=> 오답입니다.\n정답은 %s 입니다.\n", v[randomIndex]->meaning);
     }
 
     return 1;
@@ -290,16 +289,16 @@ int quiz4() {
     srand(time(NULL)); // 난수 생성을 위한 시드 설정
     int randomIndex = rand() % i; // 랜덤한 인덱스 선택
 
-    printf("뜻: %s\n", v[randomIndex]->meaning);
+    printf("\n뜻: %s\n", v[randomIndex]->meaning);
 
     char answer[10];
-    printf("영어 철자를 입력하세요: ");
+    printf("영단어를 입력하세요 : ");
     scanf("%s", answer);
 
     if (strcmp(answer, v[randomIndex]->word) == 0) {
-        printf("정답입니다!\n");
+        printf("\n=> 정답입니다!\n");
     } else {
-        printf("오답입니다. 정답은 %s입니다.\n", v[randomIndex]->word);
+        printf("\n=> 오답입니다.\n정답은 %s 입니다.\n", v[randomIndex]->word);
     }
 
     return 1;
@@ -358,7 +357,7 @@ int loadData(Voca *v[], int id){
 
 // 회원가입 함수
 int signUp(User *u[], int user_index){
-    printf("\n=====| HaHoVOCA 회원가입 |=====\n");
+    printf("\n======| HaHoVOCA 회원가입 |======\n");
 
     u[user_index] = (User *)malloc(sizeof(User));
     u[user_index]->index = 0;
@@ -380,7 +379,7 @@ int signUp(User *u[], int user_index){
 int logIn(User *u[], int user_index, User **temp){
     int id_input, status = 0;
 
-    printf("\n=====| HaHoVOCA 로그인 |=====\n");
+    printf("\n======| HaHoVOCA 로그인 |======\n");
     printf("\u09F9 학번 (돌아가기 -1) : ");
     scanf("%d", &id_input);
 
@@ -462,11 +461,8 @@ int main(void){
         int menu, num, isDeleteOK;
 
         if(status){
-            if(loadData((*temp)->voca, (*temp)->id) != 0){
-                count = loadData((*temp)->voca, (*temp)->id);
-            } else {
-                count = ((*temp)->index);
-            }
+            count = loadData((*temp)->voca, (*temp)->id);
+            (*temp)->index = count;
         }
 
         while(status){
@@ -518,7 +514,7 @@ int main(void){
                     continue;
                 }
 
-                printf("정말로 삭제하시겠습니까? (삭제 1)");
+                printf("정말로 삭제하시겠습니까? (삭제 1)\n>> ");
                 scanf("%d", &isDeleteOK);
 
                 if (isDeleteOK == 1) {
@@ -544,18 +540,18 @@ int main(void){
 
                 int num = 0;
 
-                printf("영어 철자를 맞출지 뜻을 맞출지 숫자를 입력해주세요. \n");
-                printf("1: 영어 철자, 2: 뜻 \n");
+                printf("==== |퀴즈 유형 선택| ==== \n");
+                 printf("1| 영한 퀴즈\n2| 한영 퀴즈\n>> ");
                 scanf("%d", &num);
 
-                if (num == 1){ //퀴즈1 (영단어 -> 뜻)    
+                if (num == 1){ // 퀴즈 1 실행 (영단어 -> 뜻)    
                     quiz1((*temp)->voca, (*temp)->index);
                 }
-                else if (num == 2){ //퀴즈2 (뜻 -> 영단어)
+                else if (num == 2){ // 퀴즈 2 실행 (뜻 -> 영단어)
                     quiz2((*temp)->voca, (*temp)->index);
                 }
                 else {
-                    printf("잘못 입력하셨습니다.");
+                    printf("=> 잘못 입력하셨습니다!\n");
                 }
             }
 
@@ -564,18 +560,18 @@ int main(void){
 
                 int num = 0;
 
-                printf("영어 철자를 맞출지 뜻을 맞출지 숫자를 입력해주세요. \n");
-                printf("1: 영어 철자, 2: 뜻 \n");
+                printf("==== |퀴즈 유형 선택| ==== \n");
+                printf("1| 영한 퀴즈\n2| 한영 퀴즈\n>> ");
                 scanf("%d", &num);
 
-                if (num == 1){ //퀴즈1 (영단어 -> 뜻)    
+                if (num == 1){ // 퀴즈 3 실행 (영단어 -> 뜻)    
                     quiz3();
                 }
-                else if (num == 2){ //퀴즈2 (뜻 -> 영단어)
+                else if (num == 2){ // 퀴즈 4 실행 (뜻 -> 영단어)
                     quiz4();
                 }
                 else {
-                    printf("잘못 입력하셨습니다.");
+                    printf("=> 잘못 입력하셨습니다!\n");
                 }
             }
         }
