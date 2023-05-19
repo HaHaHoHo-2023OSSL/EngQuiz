@@ -348,7 +348,8 @@ void todayWord(){
 void rank(User *temp){
     int score = temp->score;
 
-    printf("\n==== |랭크 확인| ====\n");
+    printf("\n===== |랭크 확인| =====\n");
+    printf("%d 님의 현재 점수 : %d 점\n", temp->id, score);
     printf("%d 님의 랭크는 ", temp->id);
 
     if(score >= 100) printf("[챌린저]");
@@ -365,14 +366,16 @@ void rank(User *temp){
 }
 
 // 파일에 저장 함수
-void saveData(Voca *v[], int index, int id){
+void saveData(Voca *v[], int index, User *temp){
     char filename[20];
     
-    sprintf(filename, "%d", id);
+    sprintf(filename, "%d", temp->id);
     strcat(filename, ".txt");
 
     FILE *fp;
     fp = fopen(filename, "wt");
+
+    fprintf(fp, "%d\n", temp->score);
 
     for (int i = 0; i < index; i++){
         if(v[i] == NULL) continue;
@@ -384,12 +387,12 @@ void saveData(Voca *v[], int index, int id){
 }
 
 // 파일 읽기 함수
-int loadData(Voca *v[], int id){    
+int loadData(Voca *v[], User *temp){    
     int i = 0;
 
     char filename[20];
     
-    sprintf(filename, "%d", id);
+    sprintf(filename, "%d", temp->id);
     strcat(filename, ".txt");
 
     FILE *fp;
@@ -399,6 +402,8 @@ int loadData(Voca *v[], int id){
         printf("=> 저장된 단어장 없음.\n");
         return 0;
     }
+
+    fscanf(fp, " %d", &(temp->score));
 
     for(i = 0; i < 100; i++){
         v[i] = (Voca *)malloc(sizeof(Voca));
@@ -421,6 +426,7 @@ int signUp(User *u[], int user_index){
 
     u[user_index] = (User *)malloc(sizeof(User));
     u[user_index]->index = 0;
+    u[user_index]->score = 0;
             
     printf("\u09F9 학번 입력 : ");
     scanf(" %d", &u[user_index]->id);
@@ -521,7 +527,7 @@ int main(void){
         int menu, num, isDeleteOK;
 
         if(status){
-            count = loadData((*temp)->voca, (*temp)->id);
+            count = loadData((*temp)->voca, (*temp));
             (*temp)->index = count;
         }
 
@@ -592,7 +598,7 @@ int main(void){
 
             // 메뉴 6 : 단어장 파일 저장
             else if (menu == 6) {
-                saveData((*temp)->voca, (*temp)->index, (*temp)->id);
+                saveData((*temp)->voca, (*temp)->index, (*temp));
             }
 
             // 메뉴 7 : 자신의 단어장에서 퀴즈 출제
