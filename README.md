@@ -12,7 +12,7 @@
 - 모르는 영단어를 개인 영단어 리스트에 추가하여 조회할 수 있습니다.
 - 퀴즈를 통해 리스트에 있는 영단어를 효과적으로 암기할 수 있습니다.
 - 랭크 시스템을 통해 공부가 아닌 게임처럼 재미를 느끼며 영단어를 암기할 수 있습니다.
-<br>
+<br>  
 
 ## 하호보카(HaHoVoca)의 기능
 - 모르는 영단어 추가 기능
@@ -33,7 +33,7 @@
 	<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
 	<img src="https://img.shields.io/badge/markdown-000000?style=flat&logo=markdown&logoColor=white" />
 		
-</div>
+</div>    
 <br>
 <div align=left>
 </div>
