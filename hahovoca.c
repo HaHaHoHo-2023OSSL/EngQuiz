@@ -11,8 +11,9 @@ typedef struct{
 typedef struct{
     int id;
     int index;
-    Voca *voca[50];
+    int score;
     char *filename;
+    Voca *voca[50];
 } User;
 
 // Create
@@ -96,19 +97,21 @@ int selectMenu_1(){
 int selectMenu_2(){
     int menu;
     
-    printf("\n\u256D\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 HaHoVOCA \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256E\n");
-    printf("\u07CB                                            \u07CB\n");
-    printf("  1| 단어장 조회 ");
+    printf("\n\u256D\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 HaHoVOCA \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256E\n");
+    printf("\u07CB                                              \u07CB\n");
+    printf("   1| 단어장 조회 ");
     printf(" 2| 단어 추가 ");
     printf(" 3| 단어 수정\n");
-    printf("  4| 단어 삭제   ");
+    printf("   4| 단어 삭제   ");
     printf(" 5| 단어 검색 ");
     printf(" 6| 단어 저장\n");
-    printf("  7| 퀴즈 1      ");
+    printf("   7| 퀴즈 1      ");
     printf(" 8| 퀴즈 2    ");
+    printf(" 9| 오늘의단어\n");
+    printf("   10| 랭크 확인  ");
     printf(" 0| 로그아웃\n");
-    printf("\u07CB                                            \u07CB");
-    printf("\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256F\n");
+    printf("\u07CB                                              \u07CB");
+    printf("\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256F\n");
     printf(">> ");
 
     scanf(" %d", &menu);
@@ -155,7 +158,7 @@ void searchName(Voca *v[], int index){
 }
 
 // 퀴즈 1
-int quiz1 (Voca *v[], int index){
+int quiz1 (Voca *v[], int index, User *temp){
 
     if (index == 0){
         printf("=> 저장된 단어가 없습니다!\n");
@@ -178,6 +181,7 @@ int quiz1 (Voca *v[], int index){
 
     if (strcmp(answer, v[randomIndex]->meaning) == 0) {
         printf("\n=> 정답입니다!\n");
+        temp->score++;
     } else {
         printf("\n=> 오답입니다.\n정답은 %s 입니다.\n", v[randomIndex]->meaning);
     }
@@ -186,7 +190,7 @@ int quiz1 (Voca *v[], int index){
 }
 
 // 퀴즈 2
-int quiz2 (Voca *v[], int index){
+int quiz2 (Voca *v[], int index, User *temp){
 
     if (index == 0){
         printf("=> 저장된 단어가 없습니다!\n");
@@ -210,6 +214,7 @@ int quiz2 (Voca *v[], int index){
 
     if (strcmp(answer, v[randomIndex]->word) == 0) {
         printf("\n=> 정답입니다!\n");
+        temp->score++;
     } else {
         printf("\n=> 오답입니다.\n정답은 %s 입니다.\n", v[randomIndex]->word);
     }
@@ -218,7 +223,7 @@ int quiz2 (Voca *v[], int index){
 }
 
 // 퀴즈 3
-int quiz3() {
+int quiz3(User *temp) {
     int i = 0;
     Voca *v[100];
     FILE *fp;
@@ -245,7 +250,7 @@ int quiz3() {
     srand(time(NULL)); // 난수 생성을 위한 시드 설정
     int randomIndex = rand() % i; // 랜덤한 인덱스 선택
 
-    printf("\n단어: %s\n", v[randomIndex]->word);
+    printf("\n단어 : %s\n", v[randomIndex]->word);
 
     char answer[10];
     printf("한글 뜻을 입력하세요 : ");
@@ -253,6 +258,7 @@ int quiz3() {
 
     if (strcmp(answer, v[randomIndex]->meaning) == 0) {
         printf("\n=> 정답입니다!\n");
+        temp->score++;
     } else {
         printf("\n=> 오답입니다.\n정답은 %s 입니다.\n", v[randomIndex]->meaning);
     }
@@ -262,7 +268,7 @@ int quiz3() {
 
 
 // 퀴즈 4
-int quiz4() {
+int quiz4(User *temp) {
     int i = 0;
     Voca *v[100];
     FILE *fp;
@@ -289,7 +295,7 @@ int quiz4() {
     srand(time(NULL)); // 난수 생성을 위한 시드 설정
     int randomIndex = rand() % i; // 랜덤한 인덱스 선택
 
-    printf("\n뜻: %s\n", v[randomIndex]->meaning);
+    printf("\n뜻 : %s\n", v[randomIndex]->meaning);
 
     char answer[10];
     printf("영단어를 입력하세요 : ");
@@ -297,11 +303,65 @@ int quiz4() {
 
     if (strcmp(answer, v[randomIndex]->word) == 0) {
         printf("\n=> 정답입니다!\n");
+        temp->score++;
     } else {
         printf("\n=> 오답입니다.\n정답은 %s 입니다.\n", v[randomIndex]->word);
     }
 
     return 1;
+}
+
+// 오늘의 단어 함수 
+void todayWord(){
+    Voca *v[100];
+    FILE *fp;
+    fp = fopen("database.txt", "rt");
+
+    if (fp == NULL) {
+        printf("=> 데이터 없음\n");
+        return;
+    }
+
+    int i = 0;
+
+    for (i = 0; i < 100; i++) {
+        v[i] = (Voca *)malloc(sizeof(Voca));
+
+        fscanf(fp, " %s", v[i]->word);
+        if (feof(fp))
+            break;
+
+        fscanf(fp, " %s", v[i]->meaning);
+    }
+
+    fclose(fp);
+
+    srand(time(NULL)); // 난수 생성을 위한 시드 설정
+    int randomIndex = rand() % i; // 랜덤한 인덱스 선택
+
+    printf("\n==== |오늘의 단어| ====\n");
+    printf("영단어 : %s\n", v[randomIndex]->word);
+    printf("뜻 : %s\n", v[randomIndex]->meaning);
+}
+
+// 랭크 확인 함수
+void rank(User *temp){
+    int score = temp->score;
+
+    printf("\n==== |랭크 확인| ====\n");
+    printf("%d 님의 랭크는 ", temp->id);
+
+    if(score >= 100) printf("[챌린저]");
+    else if(score >= 90) printf("[마스터]");
+    else if(score >= 80) printf("[다이아]");
+    else if(score >= 75) printf("[플래티넘]");
+    else if(score >= 70) printf("[골드]");
+    else if(score >= 65) printf("[실버]");
+    else if(score >= 60) printf("[브론즈]");
+    else if(score >= 55) printf("[아이언]");
+    else printf("[언랭]");
+
+    printf(" 입니다!\n");
 }
 
 // 파일에 저장 함수
@@ -545,10 +605,10 @@ int main(void){
                 scanf("%d", &num);
 
                 if (num == 1){ // 퀴즈 1 실행 (영단어 -> 뜻)    
-                    quiz1((*temp)->voca, (*temp)->index);
+                    quiz1((*temp)->voca, (*temp)->index, (*temp));
                 }
                 else if (num == 2){ // 퀴즈 2 실행 (뜻 -> 영단어)
-                    quiz2((*temp)->voca, (*temp)->index);
+                    quiz2((*temp)->voca, (*temp)->index, (*temp));
                 }
                 else {
                     printf("=> 잘못 입력하셨습니다!\n");
@@ -565,14 +625,24 @@ int main(void){
                 scanf("%d", &num);
 
                 if (num == 1){ // 퀴즈 3 실행 (영단어 -> 뜻)    
-                    quiz3();
+                    quiz3((*temp));
                 }
                 else if (num == 2){ // 퀴즈 4 실행 (뜻 -> 영단어)
-                    quiz4();
+                    quiz4((*temp));
                 }
                 else {
                     printf("=> 잘못 입력하셨습니다!\n");
                 }
+            }
+
+            // 메뉴 9 : 오늘의 단어
+            else if(menu == 9){
+                todayWord();
+            }
+
+            // 메뉴 10 : 랭크 확인
+            else if(menu == 10){
+                rank((*temp));
             }
         }
     }
