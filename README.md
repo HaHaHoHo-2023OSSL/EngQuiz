@@ -24,7 +24,6 @@
 - 회원가입 및 로그인 기능
 - 오늘의 단어 기능
 <br>
-<br>
 
 ## 개발 환경 및 언어
 <div align="left">
@@ -35,6 +34,7 @@
 	<img src="https://img.shields.io/badge/markdown-000000?style=flat&logo=markdown&logoColor=white" />
 	<img src="https://img.shields.io/badge/VSCode-007ACC?style=flat&logo=visualstudiocode&logoColor=white" />	
 </div>
+<br>
 <br>
 <div align=left>
 </div>
@@ -48,6 +48,7 @@
 안녕하세요! 저희는 OSS miniproject 11조 **HAHAHOHO** 팀입니다 :)         
 팀명 **HAHAHOHO**는 저희의 이름인 하준과 호연의 앞글자를 따서 만들었으며,        
 "항상 즐겁게 팀프로젝트를 하자!" 라는 의미를 담고 있습니다.  
+<br>
 <br>
 	
 * 팀원 소개 및 역할    
